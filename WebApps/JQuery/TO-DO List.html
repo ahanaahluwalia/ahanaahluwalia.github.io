@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Combined To-Do List</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .completed {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <input id="itemField" placeholder="Type an item and press Enter"></input>
+    <ul id="list"></ul>
+
+    <script>
+        function keyPressHandler(e) {
+            if (e.keyCode == 13) { // Enter key code
+                var itemValue = $('#itemField').val().trim();
+                if (itemValue) {
+                    $('#list').append('<li>' + itemValue + '</li>');
+                    $('#itemField').val('');
+                }
+            }
+        }
+
+        $('#itemField').keyup(keyPressHandler);
+
+        $('#list').on('click', 'li', function() {
+            $(this).toggleClass('completed');
+        });
+    </script>
+</body>
+</html>
